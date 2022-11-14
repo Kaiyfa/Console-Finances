@@ -86,3 +86,91 @@ var finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
+
+
+
+// console.log('Financial Analysis' +
+//     ' \n------------------------------------');
+ 
+// The total number of months included in the dataset.
+ 
+// console.log(`Total Months: ${finances.length}`);
+ 
+ 
+// The net total amount of Profit/Losses over the entire period.
+ 
+ 
+// declare a varible to store the sum
+var sum = 0;
+ 
+//Use Forloop to itterate through the array
+ 
+for (var i = 0; i < finances.length; i++) {
+ 
+    sum += finances[i][1];
+}
+ 
+// Print the sum to the console
+ 
+// console.log('Total: $' + sum);
+ 
+ 
+ 
+ 
+// var total = finances.map(finances => finances[1]).reduce((a, b) => a + b, 0);
+// console.log(total);
+ 
+ 
+// Total change in profits  from month to month
+var changeProfits = 0;
+var totalChange = 0
+var newArray = [];
+ 
+for (var i = 0; i < finances.length; i++) {
+    for (var j = i + 1; j < finances.length; j++) {
+        changeProfits = finances[j][1] - finances[i][1];
+        newArray.push(changeProfits);
+        i++;
+    }
+};
+ 
+// Test my newArray
+// console.log(newArray);
+ 
+ 
+for (var k = 0; k < newArray.length; k++) {
+    totalChange += newArray[k];
+};
+ 
+//Log totalChange
+// console.log(totalChange);
+ 
+ 
+// Declare an average variable
+ 
+var average = 0;
+ 
+// Calculate average of the changes
+ 
+average = (finances[0][1] + totalChange) / finances.length;
+ 
+// console.log(`Average Change: \$${average.toFixed(2)}`);
+ 
+ 
+// The greatest increase in profits
+ 
+var max = Math.max(...newArray);
+var index = newArray.indexOf(max) + 1;
+ 
+// console.log(`Greatest Increase in Profits: ${finances[index][0]} (\$${max})`);
+ 
+// The greatest decrease in losses
+ 
+var min = Math.min(...newArray);
+var index = newArray.indexOf(min) + 1;
+ 
+// console.log(`Greatest Decrease in Profits: ${finances[index][0]} (\$${min})`);
+ 
+// log everything in a console
+console.log('Financial Analysis' +
+    ` \n------------------------------------` + `\nTotal Months: ${finances.length}`+  '\nTotal: $' + sum +  `\nAverage Change: \$${average.toFixed(2)}` + `\nGreatest Increase in Profits: ${finances[index][0]} (\$${max})` +`\nGreatest Decrease in Profits: ${finances[index][0]} (\$${min})`);
